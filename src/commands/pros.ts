@@ -45,6 +45,8 @@ export const pros: Command = {
       })
     );
 
+    crosshairItems.sort();
+
     const row = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("select-pros")
