@@ -71,7 +71,6 @@ export const share: Command = {
 
         await interaction.reply({
           embeds: [shareEmbed],
-          components: [],
         });
       }
     }
