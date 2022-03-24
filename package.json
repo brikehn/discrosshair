@@ -5,7 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "prebuild": "rimraf ./dist",
+    "build": "tsc",
+    "prestart": "yarn build",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
