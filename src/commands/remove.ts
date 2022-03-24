@@ -16,7 +16,7 @@ export const remove: Command = {
     const { user } = interaction;
     const discordId = user.id;
 
-    const crosshairs = await prisma.user.findFirst({
+    const crosshairs = await prisma.user.findUnique({
       where: {
         discordId,
       },
@@ -30,7 +30,13 @@ export const remove: Command = {
       },
     });
 
-    if (!crosshairs) return;
+    if (!crosshairs) {
+      await interaction.editReply({
+        content:
+          "Could not find any crosshairs. Trying adding a crosshair first.",
+      });
+      return;
+    }
 
     const crosshairItems: MessageSelectOptionData[] = crosshairs?.Crosshair.map(
       (crosshair) => ({

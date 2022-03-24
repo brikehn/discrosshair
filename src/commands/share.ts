@@ -30,7 +30,13 @@ export const share: Command = {
       },
     });
 
-    if (!crosshairs) return;
+    if (!crosshairs) {
+      await interaction.editReply({
+        content:
+          "Could not find any crosshairs. Trying adding a crosshair first.",
+      });
+      return;
+    }
 
     const crosshairItems: MessageSelectOptionData[] = crosshairs?.Crosshair.map(
       (crosshair) => ({
