@@ -54,5 +54,16 @@ export const onInteraction = async (interaction: Interaction) => {
         embeds: [shareEmbed],
       });
     }
+
+    if (interaction.customId === "select-pros") {
+      const proEmbed = new MessageEmbed()
+        .setColor("BLUE")
+        .setDescription(interaction.values[0]);
+
+      await interaction.update({
+        embeds: [proEmbed],
+        components: [],
+      });
+    }
   }
 };
