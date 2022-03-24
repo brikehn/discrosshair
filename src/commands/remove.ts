@@ -1,7 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import {
   MessageActionRow,
-  MessageEmbed,
   MessageSelectMenu,
   MessageSelectOptionData,
 } from "discord.js";
@@ -56,34 +55,5 @@ export const remove: Command = {
     await interaction.editReply({
       components: [row],
     });
-
-    if (interaction.isSelectMenu()) {
-      if (interaction.customId === "select-remove") {
-        await prisma.crosshair.deleteMany({
-          where: {
-            name: {
-              equals: interaction.values[0],
-            },
-            AND: {
-              User: {
-                discordId: {
-                  equals: interaction.user.id,
-                },
-              },
-            },
-          },
-        });
-
-        const deleteEmbed = new MessageEmbed()
-          .setTitle("Deleted Crosshair")
-          .setColor("RED")
-          .setDescription(interaction.values[0]);
-
-        await interaction.update({
-          embeds: [deleteEmbed],
-          components: [],
-        });
-      }
-    }
   },
 };
