@@ -23,13 +23,9 @@ export const onReady = async () => {
     )
   );
 
-  await rest.put(
-    Routes.applicationGuildCommands(
-      process.env.CLIENT_ID as string,
-      process.env.GUILD_ID as string
-    ),
-    { body: commandData }
-  );
+  await rest.put(Routes.applicationCommands(process.env.CLIENT_ID as string), {
+    body: commandData,
+  });
 
   console.log("Discord ready!");
 };
