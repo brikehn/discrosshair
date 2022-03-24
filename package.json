@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node -r dotenv/config src/index.ts",
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
     "prestart": "yarn build",

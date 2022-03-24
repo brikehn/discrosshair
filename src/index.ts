@@ -3,7 +3,6 @@ import { IntentOptions } from "./config/IntentOptions";
 import { onInteraction } from "./events/onInteraction";
 import { onReady } from "./events/onReady";
 import { validateEnv } from "./utils/validateEnv";
-import "dotenv/config";
 
 (async () => {
   validateEnv();
