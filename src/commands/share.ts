@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import {
   MessageActionRow,
+  MessageEmbed,
   MessageSelectMenu,
   MessageSelectOptionData,
 } from "discord.js";
@@ -30,7 +31,7 @@ export const share: Command = {
       },
     });
 
-    if (!crosshairs) {
+    if (!crosshairs?.Crosshair.length) {
       await interaction.editReply({
         content:
           "Could not find any crosshairs. Trying adding a crosshair first.",
@@ -55,5 +56,24 @@ export const share: Command = {
     await interaction.editReply({
       components: [row],
     });
+
+    if (interaction.isSelectMenu()) {
+      if (interaction.customId === "select-share") {
+        const { user } = interaction;
+        const shareEmbed = new MessageEmbed()
+          .setAuthor({
+            name: user.tag,
+            iconURL: user.displayAvatarURL(),
+          })
+          .setTitle("My Crosshair")
+          .setColor("BLUE")
+          .setDescription(interaction.values[0]);
+
+        await interaction.reply({
+          embeds: [shareEmbed],
+          components: [],
+        });
+      }
+    }
   },
 };

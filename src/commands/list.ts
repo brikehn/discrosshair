@@ -26,7 +26,7 @@ export const list: Command = {
       },
     });
 
-    if (!crosshairs) {
+    if (!crosshairs?.Crosshair.length) {
       await interaction.editReply({
         content:
           "Could not find any crosshairs. Trying adding a crosshair first.",
