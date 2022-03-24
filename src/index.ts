@@ -8,7 +8,7 @@ import { validateEnv } from "./utils/validateEnv";
   validateEnv();
   const client = new Client({ intents: IntentOptions });
 
-  client.on("ready", async () => await onReady(client));
+  client.on("ready", async () => await onReady());
 
   client.on("interactionCreate", async (interaction) => {
     await onInteraction(interaction);

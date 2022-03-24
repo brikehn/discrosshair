@@ -1,9 +1,8 @@
 import { REST } from "@discordjs/rest";
 import { APIApplicationCommandOption, Routes } from "discord-api-types/v9";
-import { Client } from "discord.js";
 import { CommandList } from "../commands/_CommandList";
 
-export const onReady = async (client: Client) => {
+export const onReady = async () => {
   const rest = new REST({ version: "9" }).setToken(process.env.TOKEN as string);
 
   const commandData: {
@@ -26,7 +25,7 @@ export const onReady = async (client: Client) => {
 
   await rest.put(
     Routes.applicationGuildCommands(
-      client.user?.id || "missing id",
+      process.env.CLIENT_ID as string,
       process.env.GUILD_ID as string
     ),
     { body: commandData }
