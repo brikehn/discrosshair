@@ -45,7 +45,20 @@ export const pros: Command = {
       })
     );
 
-    crosshairItems.sort();
+    crosshairItems.sort((a, b) => {
+      const aUpper = a.label.toUpperCase();
+      const bUpper = b.label.toUpperCase();
+      if (aUpper < bUpper) {
+        return -1;
+      }
+      if (aUpper > bUpper) {
+        return 1;
+      }
+
+      // names must be equal
+      return 0;
+    });
+    console.log(crosshairItems);
 
     const row = new MessageActionRow().addComponents(
       new MessageSelectMenu()
